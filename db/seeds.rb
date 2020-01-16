@@ -11,15 +11,45 @@
 # Question.destroy_all
 #
 # 50.times do |index|
-#   surveys = []
-#   surveys.push(Divisions.create!(title: Faker::TvShows::BreakingBad.episode, author: Faker::Superhero.name))
-#   surveys
-#   rand(3..15).times do |question|
-#     surveys.each do |survey|
+#   divisions = []
+#   divisions.push(Divisions.create!(title: Faker::TvShows::BreakingBad.episode, author: Faker::Superhero.name))
+#   divisions
+#   rand(3..15).times do |employee|
+#     divisions.each do |division|
 #     Question.create! :q1 => Faker::ChuckNorris.fact,
-#                      :survey_id => survey.id
+#                      :division_id => division.id
 #     end
 #   end
 # end
 #
-# p "Created #{Divisions.count} surveys"
+# p "Created #{Divisions.count} divisions"
+
+
+Division.destroy_all
+Employee.destroy_all
+
+
+15.times do |index|
+  divisions = []
+  divisions.push(Division.create!(div_name: Faker::TvShows::BreakingBad.episode))
+  divisions
+  rand(3..15).times do |employee|
+    divisions.each do |division|
+    Employee.create! :name => Faker::Superhero.name,
+                     :division_id => division.id
+    end
+  end
+end
+
+p "Created #{Division.count} divisions"
+
+
+
+
+Project.destroy_all
+
+5.times do |index|
+  Project.create!(:proj_name => Faker::Superhero.name)
+end
+
+p "Created #{Project.count} projects"

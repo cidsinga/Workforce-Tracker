@@ -1,0 +1,44 @@
+<div class="container">
+
+  <div class="row">
+    <div class="col-6">
+      <h1>Divisions</h1>
+
+      <% if @divisions.any? %>
+      <ul>
+        <% @divisions.each do |division| %>
+        <li><%= link_to division.div_name, division_path(division) %></li>
+        <% end %>
+      </ul>
+      <% else %>
+      <p>There are no divisions yet.</p>
+      <% end %>
+
+
+      <p><%= link_to "Create new division", new_division_path %></p>
+
+
+    </div>
+
+
+    <div class="col-6">
+      <h1>Projects</h1>
+
+      <% if @projects.any? %>
+      <ul>
+        <% @projects.each do |project| %>
+        <li><%= link_to project.proj_name, project_path(project) %></li>
+        <% end %>
+      </ul>
+      <% else %>
+      <p>There are no projects yet.</p>
+      <% end %>
+
+
+      <p><%= link_to "Create new project", new_project_path %></p>
+
+    </div>
+
+  </div>
+
+</div>
