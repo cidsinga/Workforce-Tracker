@@ -2,7 +2,7 @@ class ProjectsController < ApplicationController
 
   def index
     @projects = Project.all
-    render :index
+    render :show
   end
 
   def new
@@ -33,7 +33,7 @@ class ProjectsController < ApplicationController
   def update
     @project= Project.find(params[:id])
     if @project.update(project_params)
-      redirect_to projects_path
+      redirect_to root_path
     else
       render :edit
     end
@@ -42,7 +42,15 @@ class ProjectsController < ApplicationController
   def destroy
     @project = Project.find(params[:id])
     @project.destroy
-    redirect_to projects_path
+    redirect_to root_path
+  end
+
+  def add
+    @project = Project.find(params[:id])
+    employee = Employee.where(name: params[:employee].fetch("employee")).first
+    @project.employee << employee
+    flash[:notice] = "Employee added"
+    redirect_to employee_path
   end
 
   private

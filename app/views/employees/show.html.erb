@@ -8,3 +8,24 @@
   :method => "delete"} %></p>
 
   <p><%= link_to "Return to division", division_path(@division) %></p>
+
+  <% if @employee.projects.any? %>
+    <h4>Here are the employees for this project:</h4>
+
+    <% @employee.projects.each do |project| %>
+      <ul>
+        <li>
+          <%= link_to project.proj_name, project_path(project) %>
+        </li>
+      </ul>
+    <% end %>
+  <% else %>
+    <p>No projects are listed for this employee.</p>
+  <% end %>
+
+  <%= form_for "project", :url => {:action => "add"} do |f| %>
+  <%= f.submit "Add Project"  %>
+  <%= f.select :project, @projects %>
+  <% end %>
+
+  <p><%= link_to "Return to Employees", root_path %></p>
